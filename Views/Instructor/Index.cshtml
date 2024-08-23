@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Instructor>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Img</th>
+
+            <th scope="col">Course Name</th>
+            <th scope="col">Course Degree</th>
+            <th scope="col">Course Min Degree</th>
+
+            <th scope="col">Dept Name</th>
+            <th scope="col">Dept Manager</th>
+            <th scope="col">Course Result Degree</th>
+
+            <th scope="col">Traniee Name</th>
+            <th scope="col">Traniee Address</th>
+            <th scope="col">Traniee Grade</th>
+            <th scope="col">Traniee Img</th>
+           <th scope="col">Action</th> 
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Name</td>
+                <td>@item.Address</td>
+                <td>@item.Salary</td>
+                <td><img src="/Images/@item.Img" style="width:100px;height:100px" /></td>
+
+                <td>@item.Course.Name</td>
+                <td>@item.Course.Degree</td>
+                <td>@item.Course.MinDegree</td>
+
+
+                <td>@item.Department.Name</td>
+                <td>@item.Department.ManagerName</td>
+                @foreach (var crsResult in item.Course.CourseResults)
+                {
+                    <td>@crsResult.degree</td>
+
+                    <td>@crsResult.Traniee.Name</td>
+                    <td>@crsResult.Traniee.Address</td>
+                    <td>@crsResult.Traniee.Grade</td>
+                    <td><img src="/Images/@crsResult.Traniee.Img" style="width:100px;height:100px" /></td>
+                }
+                <td><a href="@Url.Action("GetInstructorbyId", "Instructor", new { id = @item.Id })">Details</a></td>
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>
+

@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Student")'">Create</button>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Img</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach(var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Name</td>
+                <td>@item.Address</td>
+                <td><img src="/Images/@item.Img" style="width:100px;height:100px" /></td>
+                @* <td><a href="">Details</a></td> *@
+                <td><a href="@Url.Action("GetProductbyId", "Student", new { id = @item.Id })">Details</a></td>
+            </tr>
+        }
+   
+  
+   
+  </tbody>
+</table>
